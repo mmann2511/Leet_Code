@@ -35,10 +35,7 @@ class MyStack {
     }
     
     public boolean empty() {
-        if (q1.size() == 0) {
-            return true;
-        }
-        return false;
+        return q1.isEmpty();
     }
 }
 
