@@ -13,24 +13,37 @@ class Solution {
         if (head == null) {
             return false;
         }
-        Deque<Integer> stack = new ArrayDeque<>();
 
-        ListNode pointer = head;
+        ListNode slow = head;
+        ListNode fast = head;
 
-        while (pointer != null) {
-            stack.push(pointer.val);
-            pointer = pointer.next;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
         }
 
-        // reset pointer
-        pointer = head;
+        // slow is now the middle and current;
 
-        while (!stack.isEmpty()) {
-            int value = stack.pop();
-            if (value != pointer.val) {
+        ListNode prev = null;
+        ListNode next = null;
+        if (fast != null) {
+            slow = slow.next;
+        }    
+        while (slow != null) {
+            next = slow.next; // save next
+            slow.next = prev; // reverse arrow
+            prev = slow;
+            slow = next;
+        }
+
+        slow = head; // put slow back on head and compare with prev(reverse)
+
+        while (prev != null) {
+            if (slow.val != prev.val) {
                 return false;
             }
-            pointer = pointer.next;
+            prev = prev.next;
+            slow = slow.next;
         }
         return true;
     }
