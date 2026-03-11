@@ -40,6 +40,7 @@ class Solution {
 
         if (root.left == null && root.right == null) {
             result.add(path);
+            return;
         }
 
         path += "->";
