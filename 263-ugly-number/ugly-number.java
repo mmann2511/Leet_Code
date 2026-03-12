@@ -20,6 +20,6 @@ class Solution {
 
         
 
-        return true ? n == 1 : false;
+        return n == 1;
     }
 }
