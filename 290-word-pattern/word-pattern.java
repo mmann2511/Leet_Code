@@ -13,15 +13,18 @@ class Solution {
         
 
         for (int i = 0; i < pattern.length(); i++) {
-            if (!map.containsKey(pattern.charAt(i))) {
-                if (map.containsValue(word_list[i])) {
-                    return false;
-                }
+            // Neither has it
+            if (!map.containsKey(pattern.charAt(i)) &&
+                !map2.containsKey(word_list[i])) {
                 // char -> str
                 map.put(pattern.charAt(i), word_list[i]);
 
                 map2.put(word_list[i], pattern.charAt(i));
 
+            }
+            else if (map.containsKey(pattern.charAt(i)) != 
+                    map2.containsKey(word_list[i])) {
+                    return false;     
             }
             else if (!map.get(pattern.charAt(i)).equals(word_list[i]) ||
                     !map2.get(word_list[i]).equals(pattern.charAt(i))) {
