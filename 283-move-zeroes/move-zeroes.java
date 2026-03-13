@@ -14,7 +14,6 @@ class Solution {
 
         for (int i = insertPos; i < nums.length; i++) {
             nums[i] = 0;
-            insertPos--;
         }
     }
 }
